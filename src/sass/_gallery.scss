@@ -1,0 +1,26 @@
+.gallery {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.photo-card {
+    margin-left: 0;
+    padding: 0;
+    border-radius: 2%;
+    box-shadow: -2px 1px 24px 1px rgba(140,138,143,0.76);
+    -webkit-box-shadow: -2px 1px 24px 1px rgba(140,138,143,0.76);
+    -moz-box-shadow: -2px 1px 24px 1px rgba(140,138,143,0.76);
+
+}
+
+.info-item {
+    padding-left: 5px;
+    font-size: 10px;
+}
+
+// .info {
+//     display: flex;
+// }
