@@ -1,0 +1,21 @@
+.load-more {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    
+    font-size: 13px;
+    color: white;
+    padding: 5px 10px;
+    background-color: MediumSlateBlue;
+    border: 1px solid MediumSlateBlue;
+    border-radius: 7%;
+}
+
+.load-more:disabled {
+    background-color: #c1c1c1;
+    cursor: not-allowed;
+}
+
+.load-more.hidden {
+    display: none;
+}
