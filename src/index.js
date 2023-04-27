@@ -1,6 +1,6 @@
 import Notiflix from 'notiflix';
 import { CardApiService } from './api';
-import LoadMoreBtn from './loadMoreBtn';
+import LoadMoreBtn from './LoadMoreBtn';
 // Описаний в документації
 import SimpleLightbox from "simplelightbox";
 // Додатковий імпорт стилів
