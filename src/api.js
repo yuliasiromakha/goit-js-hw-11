@@ -19,12 +19,11 @@ export class CardApiService {
     constructor() {
         this.query = ''; 
         this.page = 1;
-    }
+    } 
 
     fetchingImages() {
 
         const url = `${CardApiService.BASE_URL}?key=${CardApiService.API_KEY}&q=${this.query}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`
-
         return fetch(url)
         .then(data => {
     
@@ -45,4 +44,15 @@ export class CardApiService {
         this.page += 1 ;
 
     }
+
+    // checkForLastPage() {
+    //     const currentPage = this.page;
+    //     const lastPage = this.page / 40;
+    // }
 }
+//  per-page
+//  response totalHits
+//  lastPage = totalHits/per-page
+//  mustSail? mustFlow
+//  does lastpage = currentpage
+//  notiflix + hide

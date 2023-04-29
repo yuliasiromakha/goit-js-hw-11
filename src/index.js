@@ -17,6 +17,9 @@ const loadMoreBtn = new LoadMoreBtn ({
 form.addEventListener('submit', onSubmit)
 
 loadMoreBtn.button.addEventListener('click', loadMoreCards)
+loadMoreBtn.hide()
+
+// ФУНКЦІЯ ПІСЛЯ САБМІТУ ФОРМИ
 
 function onSubmit(e) {
     e.preventDefault()
@@ -38,6 +41,7 @@ function onSubmit(e) {
 //  ФУНКЦІЯ ЩО ФЕТЧИТЬ НА ДІСПЛЕЙ КАРТКИ ТА ПЕРЕВІРЯЄ ЧИ ПРИСУТНЯ ІНФОРМАЦІЯ
  function fetchCards() {
 
+  loadMoreBtn.hide()
   return getCardMarkup()
   .catch(error => {
   if (error.message === '404') {
@@ -54,15 +58,35 @@ function onSubmit(e) {
 
     const totalHits = data.totalHits;
     console.log('total hits:', totalHits);
+
+    // ПЕРЕВІРКА НА ОСТАННЮ СТОРІНКУ
+    const lastPage = totalHits / 40;
+    const currentPage = '...';
+
+    if (lastPage === currentPage) {
+      loadMoreBtn.hide()
+        Notiflix.Notify.failure('We are sorry, but you have reached the end of search results.')
+    }
+
+//  per-page
+//  response totalHits
+//  lastPage = totalHits/per-page
+//  mustSail? mustFlow
+//  does lastpage = currentpage
+//  notiflix + hide
+
     if (returnedResult.length === 0) {
         Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.')
     } else if(returnedResult.length >= 1) {
         const createdMarkup = returnedResult.reduce((acc, card) => acc + renderPictureCard(card), '');
     gallery.insertAdjacentHTML('beforeend', createdMarkup);
     Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`)
-    } else if (returnedResult.length < 40) {
+    loadMoreBtn.show()
+    } 
+    if (returnedResult.length > 0 && returnedResult.length < 40) {
       loadMoreBtn.hide()
     }
+
 })
  }
 
@@ -79,9 +103,6 @@ function onSubmit(e) {
     } else if(returnedResult.length >= 1) {
         const createdMarkup = returnedResult.reduce((acc, card) => acc + renderPictureCard(card), '');
     gallery.insertAdjacentHTML('beforeend', createdMarkup);
-    }
-    else if(returnedResult < 40) {
-      loadMoreBtn.hide()
     }
 })
  }
