@@ -79,7 +79,9 @@ function onSubmit(e) {
     } else if(returnedResult.length >= 1) {
         const createdMarkup = returnedResult.reduce((acc, card) => acc + renderPictureCard(card), '');
     gallery.insertAdjacentHTML('beforeend', createdMarkup);
-
+    }
+    else if(returnedResult < 40) {
+      loadMoreBtn.hide()
     }
 })
  }
